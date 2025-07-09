@@ -1,0 +1,24 @@
+.Searchbar {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    width: 30vw;
+    height: 5vh;
+    background-color: #FFCFA6;
+    border-radius: 30px;
+    gap: 0.5rem;
+}
+
+.Icon {
+    height: 2vw;
+    width: 2vw;
+    color: #E98530;
+}
+
+.Searchbar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+}
