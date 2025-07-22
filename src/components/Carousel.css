@@ -1,0 +1,35 @@
+.Carousel {
+    align-items: center;
+    padding: 0;
+    width: 90vw;
+    height: 20vh;
+    gap: 0.5rem;
+    color: #e5e5e5;
+    background-color: #1e1e1e;
+}
+
+.Card {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background-color: #E98530;
+    height: 20vh;
+    width: 11vw;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    font-size: clamp(1rem, 2vw, 3rem);
+}
+
+.CarouselItem {
+    flex: 0 0 auto;
+    width: 11vw;
+    height: 100%;
+}
+
+.CarouselItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
