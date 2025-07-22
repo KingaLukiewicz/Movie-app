@@ -4,9 +4,15 @@ import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
 import './Carousel.css';
 
+type Item = {
+  id: number;
+  title: string;
+  poster_path: string;
+};
+
 const Carousel = ({ text, type }) => {
   const API_TOKEN = process.env.REACT_APP_TMDB_TOKEN;
-  const [popular, setPopular] = useState([]);
+  const [popular, setPopular] = useState<Item[]>([]);
   const settings = {
     dots: true,
     infinite: false,
