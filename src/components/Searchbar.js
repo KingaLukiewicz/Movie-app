@@ -1,7 +1,7 @@
 import './Searchbar.css';
 import { FiSearch } from 'react-icons/fi';
 
-function Searchbar() {
+const Searchbar = () => {
     return (
         <div className="Searchbar">
             <FiSearch className="Icon" />

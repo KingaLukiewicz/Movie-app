@@ -1,7 +1,7 @@
 import React from 'react';
 import './QuickView.css';
 
-function QuickView({ text }) {
+const QuickView = ({ text }) => {
     return (
         <div className="QuickView">
             <div className='Card'>{text}</div>

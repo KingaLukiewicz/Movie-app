@@ -1,7 +1,7 @@
 import './Header.css';
 import Searchbar from './Searchbar';
 
-function Header() {
+const Header = () => {
     return (
         <div className="Header">
             <Searchbar></Searchbar>
