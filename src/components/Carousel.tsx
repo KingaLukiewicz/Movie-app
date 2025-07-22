@@ -10,7 +10,12 @@ type Item = {
   poster_path: string;
 };
 
-const Carousel = ({ text, type }) => {
+type Props = {
+  text: string;
+  type: string;
+};
+
+const Carousel: React.FC<Props> = ({ text, type }) => {
   const API_TOKEN = process.env.REACT_APP_TMDB_TOKEN;
   const [popular, setPopular] = useState<Item[]>([]);
   const settings = {
@@ -58,17 +63,19 @@ const Carousel = ({ text, type }) => {
   return (
     <div className="Carousel">
       <div className="Card">{text}</div>
-      <Slider {...settings}>
-        {popular.map((item) => (
-          <div key={item.id} className="CarouselItem">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-              alt={item.title}
-            />
-            {/* <p>{movie.title}</p> */}
-          </div>
-        ))}
-      </Slider>
+      <div className="Slider">
+        <Slider {...settings}>
+          {popular.map((item) => (
+            <div key={item.id} className="CarouselItem">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                alt={item.title}
+              />
+              {/* <p>{movie.title}</p> */}
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };
