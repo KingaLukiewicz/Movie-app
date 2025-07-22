@@ -10,6 +10,12 @@ type Item = {
   poster_path: string;
 };
 
+type Person = {
+  id: number;
+  name: string;
+  profile_path: string;
+};
+
 type Props = {
   text: string;
   type: string;
@@ -18,6 +24,7 @@ type Props = {
 const Carousel: React.FC<Props> = ({ text, type }) => {
   const API_TOKEN = process.env.REACT_APP_TMDB_TOKEN;
   const [popular, setPopular] = useState<Item[]>([]);
+  const [people, setPeople] = useState<Person[]>([]);
   const settings = {
     dots: true,
     infinite: false,
@@ -52,7 +59,11 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
             }
           }
         );
-        setPopular(response.data.results);
+        if (type == 'person') {
+          setPeople(response.data.results);
+        } else {
+          setPopular(response.data.results);
+        }
       } catch (error) {
         console.error('Failed to fetch', error);
       }
@@ -65,15 +76,23 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
       <div className="Card">{text}</div>
       <div className="Slider">
         <Slider {...settings}>
-          {popular.map((item) => (
-            <div key={item.id} className="CarouselItem">
-              <img
-                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                alt={item.title}
-              />
-              {/* <p>{movie.title}</p> */}
-            </div>
-          ))}
+          {type === 'person'
+            ? people.map((item) => (
+                <div key={item.id} className="CarouselItem">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
+                    alt={item.name}
+                  />
+                </div>
+              ))
+            : popular.map((item) => (
+                <div key={item.id} className="CarouselItem">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                    alt={item.title}
+                  />
+                </div>
+              ))}
         </Slider>
       </div>
     </div>
