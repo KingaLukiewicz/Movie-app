@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
+import settings from './sliderSettings';
 import { useNavigate } from 'react-router-dom';
 import './Carousel.css';
 
@@ -37,27 +38,6 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
   const API_TOKEN = process.env.REACT_APP_TMDB_TOKEN;
   const [popular, setPopular] = useState<Item[]>([]);
   const [people, setPeople] = useState<Person[]>([]);
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2
-        }
-      }
-    ]
-  };
 
   useEffect(() => {
     const fetchPopular = async () => {
