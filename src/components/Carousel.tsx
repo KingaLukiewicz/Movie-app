@@ -7,19 +7,31 @@ import './Carousel.css';
 type Item = {
   id: number;
   title: string;
-  poster_path: string;
+  posterPath: string;
 };
 
 type Person = {
   id: number;
   name: string;
-  profile_path: string;
+  profilePath: string;
 };
 
 type Props = {
   text: string;
   type: string;
 };
+
+const mapItem = (item: any): Item => ({
+  id: item.id,
+  title: item.title,
+  posterPath: item.poster_path
+});
+
+const mapPerson = (item: any): Person => ({
+  id: item.id,
+  name: item.name,
+  profilePath: item.profile_path
+});
 
 const Carousel: React.FC<Props> = ({ text, type }) => {
   const API_TOKEN = process.env.REACT_APP_TMDB_TOKEN;
@@ -60,9 +72,11 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
           }
         );
         if (type == 'person') {
-          setPeople(response.data.results);
+          const people = response.data.results.map(mapPerson);
+          setPeople(people);
         } else {
-          setPopular(response.data.results);
+          const movies = response.data.results.map(mapItem);
+          setPopular(movies);
         }
       } catch (error) {
         console.error('Failed to fetch', error);
@@ -80,7 +94,7 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
             ? people.map((item) => (
                 <div key={item.id} className="CarouselItem">
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
+                    src={`https://image.tmdb.org/t/p/w500${item.profilePath}`}
                     alt={item.name}
                   />
                 </div>
@@ -88,7 +102,7 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
             : popular.map((item) => (
                 <div key={item.id} className="CarouselItem">
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500${item.posterPath}`}
                     alt={item.title}
                   />
                 </div>
