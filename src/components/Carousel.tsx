@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
-import settings from './sliderSettings';
+import { SLIDER_SETTINGS, TMDB_IMAGE_BASE_URL, API_TOKEN } from './constants';
 import { useNavigate } from 'react-router-dom';
 import './Carousel.css';
 
@@ -35,7 +35,6 @@ const mapPerson = (item: any): Person => ({
 });
 
 const Carousel: React.FC<Props> = ({ text, type }) => {
-  const API_TOKEN = process.env.REACT_APP_TMDB_TOKEN;
   const [popular, setPopular] = useState<Item[]>([]);
   const [people, setPeople] = useState<Person[]>([]);
 
@@ -69,12 +68,12 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
     <div className="Carousel">
       <div className="Card">{text}</div>
       <div className="Slider">
-        <Slider {...settings}>
+        <Slider {...SLIDER_SETTINGS}>
           {type === 'person'
             ? people.map((item) => (
                 <div key={item.id} className="CarouselItem">
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${item.profilePath}`}
+                    src={`${TMDB_IMAGE_BASE_URL}${item.profilePath}`}
                     alt={item.name}
                   />
                 </div>
@@ -82,7 +81,7 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
             : popular.map((item) => (
                 <div key={item.id} className="CarouselItem">
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${item.posterPath}`}
+                    src={`${TMDB_IMAGE_BASE_URL}${item.posterPath}`}
                     alt={item.title}
                   />
                 </div>
