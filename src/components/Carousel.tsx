@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
 import { SLIDER_SETTINGS, TMDB_IMAGE_BASE_URL, API_TOKEN } from './constants';
-import { useNavigate } from 'react-router-dom';
 import './Carousel.css';
 
 type Item = {
