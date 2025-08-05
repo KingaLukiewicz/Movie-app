@@ -1,12 +1,58 @@
-.CarouselItem {
+.Container {
+  perspective: 1000px;
   flex: 0 0 auto;
   width: 10vw;
   height: 20vh;
+  cursor: pointer;
 }
 
-.CarouselItem img {
+.CarouselItem {
   width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+  border: 1px solid #1e1e1e;
+  box-shadow:
+    5px 5px 10px rgba(0, 0, 0, 0.2),
+    -5px -5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+}
+
+.Container:hover .CarouselItem {
+  transform: rotateY(180deg);
+}
+
+.Front,
+.Back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Front img {
+  width: auto;
   height: 100%;
   object-fit: contain;
   border-radius: 10px;
+}
+
+.Back {
+  color: #1e1e1e;
+  background-color: #ffcfa6;
+  transform: rotateY(180deg);
+  overflow: scroll;
+}
+
+.Back p {
+  font-size: clamp(0.6rem, 1.5vw, 1rem);
+  padding: 10px;
+  text-align: center;
+  max-height: 100%;
+  margin-bottom: 10px;
 }

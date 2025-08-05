@@ -71,10 +71,20 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
         <Slider {...SLIDER_SETTINGS}>
           {type === 'person'
             ? people.map((item) => (
-                <CarouselItem id={item.id} name={item.name} path={item.path} />
+                <CarouselItem
+                  id={item.id}
+                  name={item.name}
+                  path={item.path}
+                  type={type}
+                />
               ))
             : popular.map((item) => (
-                <CarouselItem id={item.id} name={item.name} path={item.path} />
+                <CarouselItem
+                  id={item.id}
+                  name={item.name}
+                  path={item.path}
+                  type={type}
+                />
               ))}
         </Slider>
       </div>
