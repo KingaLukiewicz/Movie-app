@@ -3,17 +3,18 @@ import axios from 'axios';
 import Slider from 'react-slick';
 import { SLIDER_SETTINGS, TMDB_IMAGE_BASE_URL, API_TOKEN } from './constants';
 import './Carousel.css';
+import CarouselItem from './CarouselItem';
 
 type Item = {
   id: number;
-  title: string;
-  posterPath: string;
+  name: string;
+  path: string;
 };
 
 type Person = {
   id: number;
   name: string;
-  profilePath: string;
+  path: string;
 };
 
 type Props = {
@@ -23,14 +24,14 @@ type Props = {
 
 const mapItem = (item: any): Item => ({
   id: item.id,
-  title: item.title,
-  posterPath: item.poster_path
+  name: item.title,
+  path: item.poster_path
 });
 
 const mapPerson = (item: any): Person => ({
   id: item.id,
   name: item.name,
-  profilePath: item.profile_path
+  path: item.profile_path
 });
 
 const Carousel: React.FC<Props> = ({ text, type }) => {
@@ -70,20 +71,10 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
         <Slider {...SLIDER_SETTINGS}>
           {type === 'person'
             ? people.map((item) => (
-                <div key={item.id} className="CarouselItem">
-                  <img
-                    src={`${TMDB_IMAGE_BASE_URL}${item.profilePath}`}
-                    alt={item.name}
-                  />
-                </div>
+                <CarouselItem id={item.id} name={item.name} path={item.path} />
               ))
             : popular.map((item) => (
-                <div key={item.id} className="CarouselItem">
-                  <img
-                    src={`${TMDB_IMAGE_BASE_URL}${item.posterPath}`}
-                    alt={item.title}
-                  />
-                </div>
+                <CarouselItem id={item.id} name={item.name} path={item.path} />
               ))}
         </Slider>
       </div>
