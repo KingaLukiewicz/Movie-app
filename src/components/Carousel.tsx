@@ -11,24 +11,24 @@ type Item = {
   path: string;
 };
 
-type Person = {
-  id: number;
-  name: string;
-  path: string;
-};
-
 type Props = {
   text: string;
   type: string;
 };
 
-const mapItem = (item: any): Item => ({
+const mapMovie = (item: any): Item => ({
   id: item.id,
   name: item.title,
   path: item.poster_path
 });
 
-const mapPerson = (item: any): Person => ({
+const mapTV = (item: any): Item => ({
+  id: item.id,
+  name: item.name,
+  path: item.poster_path
+});
+
+const mapPerson = (item: any): Item => ({
   id: item.id,
   name: item.name,
   path: item.profile_path
@@ -36,7 +36,6 @@ const mapPerson = (item: any): Person => ({
 
 const Carousel: React.FC<Props> = ({ text, type }) => {
   const [popular, setPopular] = useState<Item[]>([]);
-  const [people, setPeople] = useState<Person[]>([]);
 
   useEffect(() => {
     const fetchPopular = async () => {
@@ -52,9 +51,12 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
         );
         if (type == 'person') {
           const people = response.data.results.map(mapPerson);
-          setPeople(people);
+          setPopular(people);
+        } else if (type == 'tv') {
+          const tvShows = response.data.results.map(mapTV);
+          setPopular(tvShows);
         } else {
-          const movies = response.data.results.map(mapItem);
+          const movies = response.data.results.map(mapMovie);
           setPopular(movies);
         }
       } catch (error) {
@@ -69,23 +71,14 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
       <div className="Card">{text}</div>
       <div className="Slider">
         <Slider {...SLIDER_SETTINGS}>
-          {type === 'person'
-            ? people.map((item) => (
-                <CarouselItem
-                  id={item.id}
-                  name={item.name}
-                  path={item.path}
-                  type={type}
-                />
-              ))
-            : popular.map((item) => (
-                <CarouselItem
-                  id={item.id}
-                  name={item.name}
-                  path={item.path}
-                  type={type}
-                />
-              ))}
+          {popular.map((item) => (
+            <CarouselItem
+              id={item.id}
+              name={item.name}
+              path={item.path}
+              type={type}
+            />
+          ))}
         </Slider>
       </div>
     </div>
