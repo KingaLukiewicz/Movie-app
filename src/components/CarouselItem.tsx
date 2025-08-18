@@ -40,7 +40,10 @@ const CarouselItem: React.FC<Props> = ({ id, name, path, type }) => {
     <div className="Container">
       <div className="CarouselItem">
         <div className="Front">
-          <img src={`${TMDB_IMAGE_BASE_URL}${path}`} alt={name} />
+          <img
+            src={`${TMDB_IMAGE_BASE_URL}${path}`}
+            alt={`${name} ${type === 'movie' ? 'movie poster' : type === 'tv' ? 'TV show poster' : 'profile photo'}`}
+          />
         </div>
         <div className="Back">
           {type == 'person' ? <p>{name}</p> : <p>{overview}</p>}
