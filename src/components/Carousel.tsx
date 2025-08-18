@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
-import { SLIDER_SETTINGS, TMDB_IMAGE_BASE_URL, API_TOKEN } from './constants';
+import { SLIDER_SETTINGS, API_TOKEN } from './constants';
 import './Carousel.css';
 import CarouselItem from './CarouselItem';
 

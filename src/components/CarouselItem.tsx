@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_TOKEN, TMDB_IMAGE_BASE_URL } from './constants';
 import './CarouselItem.css';
-import Button from '@mui/material/Button';
 
 type Props = {
   id: number;
