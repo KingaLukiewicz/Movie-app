@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
-import { SLIDER_SETTINGS, API_TOKEN, TMDB_ID_URL } from './constants';
+import {
+  SLIDER_SETTINGS,
+  API_TOKEN,
+  TMDB_ID_URL,
+  TMDB_TYPE
+} from './constants';
 import './Carousel.css';
 import CarouselItem from './CarouselItem';
 
@@ -13,7 +18,7 @@ type Item = {
 
 type Props = {
   text: string;
-  type: string;
+  type: TMDB_TYPE;
 };
 
 const mapMovie = (item: any): Item => ({

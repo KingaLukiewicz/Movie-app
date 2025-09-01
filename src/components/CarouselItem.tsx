@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { API_TOKEN, TMDB_IMAGE_BASE_URL, TMDB_ID_URL } from './constants';
+import {
+  API_TOKEN,
+  TMDB_IMAGE_BASE_URL,
+  TMDB_ID_URL,
+  TMDB_TYPE
+} from './constants';
 import './CarouselItem.css';
 
 type Props = {
   id: number;
   name: string;
   path: string;
-  type: string;
+  type: TMDB_TYPE;
 };
 
 const CarouselItem: React.FC<Props> = ({ id, name, path, type }) => {
