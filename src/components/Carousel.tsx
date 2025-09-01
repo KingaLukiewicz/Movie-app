@@ -21,22 +21,16 @@ type Props = {
   type: TMDB_TYPE;
 };
 
-const mapMovie = (item: any): Item => ({
-  id: item.id,
-  name: item.title,
-  path: item.poster_path
-});
+const FIELD_MAP: Record<TMDB_TYPE, { name: string; path: string }> = {
+  [TMDB_TYPE.MOVIE]: { name: 'title', path: 'poster_path' },
+  [TMDB_TYPE.TV]: { name: 'name', path: 'poster_path' },
+  [TMDB_TYPE.PERSON]: { name: 'name', path: 'profile_path' }
+};
 
-const mapTV = (item: any): Item => ({
+const mapItem = (type: TMDB_TYPE, item: any): Item => ({
   id: item.id,
-  name: item.name,
-  path: item.poster_path
-});
-
-const mapPerson = (item: any): Item => ({
-  id: item.id,
-  name: item.name,
-  path: item.profile_path
+  name: item[FIELD_MAP[type].name],
+  path: item[FIELD_MAP[type].path]
 });
 
 const Carousel: React.FC<Props> = ({ text, type }) => {
@@ -54,16 +48,7 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
             }
           }
         );
-        if (type == 'person') {
-          const people = response.data.results.map(mapPerson);
-          setPopular(people);
-        } else if (type == 'tv') {
-          const tvShows = response.data.results.map(mapTV);
-          setPopular(tvShows);
-        } else {
-          const movies = response.data.results.map(mapMovie);
-          setPopular(movies);
-        }
+        setPopular(response.data.results.map((i: any) => mapItem(type, i)));
       } catch (error) {
         console.error('Failed to fetch', error);
       }
