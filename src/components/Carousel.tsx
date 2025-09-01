@@ -78,6 +78,7 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
         <Slider {...SLIDER_SETTINGS}>
           {popular.map((item) => (
             <CarouselItem
+              key={item.id}
               id={item.id}
               name={item.name}
               path={item.path}
