@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { API_TOKEN, TMDB_IMAGE_BASE_URL } from './constants';
+import { API_TOKEN, TMDB_IMAGE_BASE_URL, TMDB_ID_URL } from './constants';
 import './CarouselItem.css';
 
 type Props = {
@@ -18,7 +18,7 @@ const CarouselItem: React.FC<Props> = ({ id, name, path, type }) => {
       const fetchOverview = async () => {
         try {
           const response = await axios.get(
-            `https://api.themoviedb.org/3/${type}/${id}?language=en-US`,
+            `${TMDB_ID_URL}${type}/${id}?language=en-US`,
             {
               headers: {
                 Authorization: `Bearer ${API_TOKEN}`,

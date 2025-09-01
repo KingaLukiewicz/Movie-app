@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
-import { SLIDER_SETTINGS, API_TOKEN } from './constants';
+import { SLIDER_SETTINGS, API_TOKEN, TMDB_ID_URL } from './constants';
 import './Carousel.css';
 import CarouselItem from './CarouselItem';
 
@@ -41,7 +41,7 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
     const fetchPopular = async () => {
       try {
         const response = await axios.get(
-          `https://api.themoviedb.org/3/trending/${type}/day?language=en-US`,
+          `${TMDB_ID_URL}trending/${type}/day?language=en-US`,
           {
             headers: {
               Authorization: `Bearer ${API_TOKEN}`,
