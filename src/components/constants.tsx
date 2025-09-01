@@ -25,8 +25,14 @@ export const SLIDER_SETTINGS = {
   ]
 };
 
+export enum TMDB_TYPE {
+  MOVIE = 'movie',
+  TV = 'tv',
+  PERSON = 'person'
+}
+
 export const CAROUSEL_CATEGORIES = {
-  MOVIES: { title: 'MOVIES', type: 'movie' },
-  TV_SHOWS: { title: 'TV SHOWS', type: 'tv' },
-  PEOPLE: { title: 'PEOPLE', type: 'person' }
+  MOVIES: { title: 'MOVIES', type: TMDB_TYPE.MOVIE },
+  TV_SHOWS: { title: 'TV SHOWS', type: TMDB_TYPE.TV },
+  PEOPLE: { title: 'PEOPLE', type: TMDB_TYPE.PERSON }
 };
