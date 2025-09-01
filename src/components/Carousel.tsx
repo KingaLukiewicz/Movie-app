@@ -10,7 +10,7 @@ import {
 import './Carousel.css';
 import CarouselItem from './CarouselItem';
 
-type Item = {
+export type Item = {
   id: number;
   name: string;
   path: string;
@@ -77,13 +77,7 @@ const Carousel: React.FC<Props> = ({ text, type }) => {
       <div className="Slider">
         <Slider {...SLIDER_SETTINGS}>
           {popular.map((item) => (
-            <CarouselItem
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              path={item.path}
-              type={type}
-            />
+            <CarouselItem key={item.id} item={item} type={type} />
           ))}
         </Slider>
       </div>

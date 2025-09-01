@@ -7,15 +7,14 @@ import {
   TMDB_TYPE
 } from './constants';
 import './CarouselItem.css';
+import { Item } from './Carousel';
 
 type Props = {
-  id: number;
-  name: string;
-  path: string;
+  item: Item;
   type: TMDB_TYPE;
 };
 
-const CarouselItem: React.FC<Props> = ({ id, name, path, type }) => {
+const CarouselItem: React.FC<Props> = ({ item, type }) => {
   const [overview, setOverview] = useState<string>('');
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const CarouselItem: React.FC<Props> = ({ id, name, path, type }) => {
       const fetchOverview = async () => {
         try {
           const response = await axios.get(
-            `${TMDB_ID_URL}${type}/${id}?language=en-US`,
+            `${TMDB_ID_URL}${type}/${item.id}?language=en-US`,
             {
               headers: {
                 Authorization: `Bearer ${API_TOKEN}`,
@@ -45,12 +44,12 @@ const CarouselItem: React.FC<Props> = ({ id, name, path, type }) => {
       <div className="CarouselItem">
         <div className="Front">
           <img
-            src={`${TMDB_IMAGE_BASE_URL}${path}`}
-            alt={`${name} ${type === 'movie' ? 'movie poster' : type === 'tv' ? 'TV show poster' : 'profile photo'}`}
+            src={`${TMDB_IMAGE_BASE_URL}${item.path}`}
+            alt={`${item.name} ${type === 'movie' ? 'movie poster' : type === 'tv' ? 'TV show poster' : 'profile photo'}`}
           />
         </div>
         <div className="Back">
-          {type == 'person' ? <p>{name}</p> : <p>{overview}</p>}
+          {type == 'person' ? <p>{item.name}</p> : <p>{overview}</p>}
         </div>
       </div>
     </div>
