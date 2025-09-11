@@ -8,6 +8,7 @@ import {
 } from './constants';
 import './CarouselItem.css';
 import { Item } from './Carousel';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   item: Item;
@@ -16,6 +17,11 @@ type Props = {
 
 const CarouselItem: React.FC<Props> = ({ item, type }) => {
   const [overview, setOverview] = useState<string>('');
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/${type}/${item.id}`);
+  };
 
   useEffect(() => {
     if (type != 'person') {
@@ -40,7 +46,11 @@ const CarouselItem: React.FC<Props> = ({ item, type }) => {
   }, []);
 
   return (
-    <div className="Container">
+    <div
+      className="Container"
+      onClick={handleClick}
+      style={{ cursor: 'pointer' }}
+    >
       <div className="CarouselItem">
         <div className="Front">
           <img
