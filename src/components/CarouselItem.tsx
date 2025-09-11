@@ -5,7 +5,7 @@ import {
   TMDB_IMAGE_BASE_URL,
   TMDB_ID_URL,
   TMDB_TYPE
-} from './constants';
+} from '../constants';
 import './CarouselItem.css';
 import { Item } from './Carousel';
 import { useNavigate } from 'react-router-dom';
