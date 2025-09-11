@@ -1,16 +1,15 @@
-import './App.css';
-import Header from './components/Header';
-import Carousel from './components/Carousel';
-import { CAROUSEL_CATEGORIES } from './components/constants';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import MoviePage from './pages/MoviePage';
 
 function App() {
   return (
-    <div className="App">
-      <Header></Header>
-      {Object.entries(CAROUSEL_CATEGORIES).map(([key, { title, type }]) => (
-        <Carousel text={title} type={type} />
-      ))}
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie/:movie_id" element={<MoviePage />} />
+      </Routes>
+    </>
   );
 }
 
