@@ -1,7 +1,7 @@
 import './Home.css';
 import Header from '../components/Header';
 import Carousel from '../components/Carousel';
-import { CAROUSEL_CATEGORIES } from '../components/constants';
+import { CAROUSEL_CATEGORIES } from '../constants';
 
 function Home() {
   return (
