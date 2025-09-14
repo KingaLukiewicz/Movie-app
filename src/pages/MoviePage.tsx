@@ -10,8 +10,13 @@ function MoviePage() {
       <div className="Details">
         <h2>Details</h2>
       </div>
-      <div className="Actors">
-        <h2>Actors</h2> {/*carousel*/}
+      <div className="Credits">
+        <h2>Cast</h2>
+        <Carousel
+          text=""
+          type={TMDB_TYPE.PERSON}
+          endpoint={`${TMDB_ID_URL}/movie/${movie_id}/credits?language=en-US`}
+        />
       </div>
       <div className="Reviews">
         <h2>Reviews</h2>
