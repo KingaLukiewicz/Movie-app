@@ -4,7 +4,7 @@ export const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 export const TMDB_ID_URL = 'https://api.themoviedb.org/3/';
 
 export const SLIDER_SETTINGS = {
-  dots: true,
+  dots: false,
   infinite: false,
   speed: 500,
   slidesToShow: 6,
@@ -20,6 +20,22 @@ export const SLIDER_SETTINGS = {
       breakpoint: 768,
       settings: {
         slidesToShow: 2
+      }
+    }
+  ]
+};
+
+export const REVIEW_SLIDER = {
+  dots: false,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 1
       }
     }
   ]
