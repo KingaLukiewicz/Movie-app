@@ -59,7 +59,14 @@ const CarouselItem: React.FC<Props> = ({ item, type }) => {
           />
         </div>
         <div className="Back">
-          {type == 'person' ? <p>{item.name}</p> : <p>{overview}</p>}
+          {type === 'person' ? (
+            <>
+              <p className="Name">{item.name}</p>
+              {item.character && <p>as {item.character}</p>}
+            </>
+          ) : (
+            <p>{overview}</p>
+          )}
         </div>
       </div>
     </div>

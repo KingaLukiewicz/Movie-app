@@ -34,6 +34,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .Front img {
@@ -56,4 +57,10 @@
   text-align: center;
   max-height: 100%;
   margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.Name {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: bolder;
 }
