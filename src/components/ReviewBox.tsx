@@ -1,6 +1,6 @@
 import { Review } from '../pages/MoviePage';
 import Avatar from '@mui/material/Avatar';
-import Rating from '@mui/material/Rating';
+import { Rating, Tooltip } from '@mui/material';
 import './ReviewBox.css';
 
 type Props = {
@@ -13,12 +13,19 @@ const ReviewBox: React.FC<Props> = ({ review }) => {
       <div className="Author">
         <Avatar alt={review.author} src={review.avatar_path} />
         <p>{review.author}</p>
-        <Rating
-          name="read-only"
-          value={review.rating / 2}
-          precision={0.5}
-          readOnly
-        />
+        <Tooltip
+          placement="top"
+          title={`${(review.rating / 2).toFixed(1)} / 5`}
+        >
+          <span>
+            <Rating
+              name="read-only"
+              value={review.rating / 2}
+              precision={0.5}
+              readOnly
+            />
+          </span>
+        </Tooltip>
       </div>
       <div className="Content">
         <p>{review.content}</p>
