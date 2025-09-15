@@ -7,6 +7,7 @@ import Slider from 'react-slick';
 import axios from 'axios';
 import { REVIEW_SLIDER } from '../constants';
 import ReviewBox from '../components/ReviewBox';
+import MainInfo from '../components/MainInfo';
 
 export type Review = {
   id: string;
@@ -14,6 +15,15 @@ export type Review = {
   rating: number;
   content: string;
   avatar_path?: string;
+};
+
+type Details = {
+  id: string;
+  title: string;
+  overview: string;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
 };
 
 const mapReview = (item: any): Review => ({
@@ -27,6 +37,7 @@ const mapReview = (item: any): Review => ({
 function MoviePage() {
   const { movie_id } = useParams<{ movie_id: string }>();
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [details, setDetails] = useState<Details | null>(null);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -46,8 +57,37 @@ function MoviePage() {
     fetchReviews();
   }, []);
 
+  useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const url = `${TMDB_ID_URL}/movie/${movie_id}?language=en-US`;
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${API_TOKEN}`,
+            accept: 'application/json'
+          }
+        });
+        setDetails(response.data);
+      } catch (error) {
+        console.error('Failed to fetch', error);
+      }
+    };
+    fetchDetails();
+  }, []);
+
   return (
     <div className="MoviePage">
+      {details && (
+        <MainInfo
+          name={details.title}
+          description={details.overview}
+          path={details.poster_path}
+          type={TMDB_TYPE.MOVIE}
+          vote_avg={details.vote_average}
+          vote_count={details.vote_count}
+        />
+      )}
+
       <div className="Details">
         <h2>Details</h2>
       </div>
