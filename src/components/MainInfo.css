@@ -1,0 +1,33 @@
+.MainInfo {
+  height: 40vh;
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.MainInfo img {
+  height: 40vh;
+  width: auto;
+  margin-right: 4vw;
+}
+
+.RightInfo {
+  height: 40vh;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.StarRating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.Rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
