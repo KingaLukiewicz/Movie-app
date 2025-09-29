@@ -17,13 +17,22 @@ export type Review = {
   avatar_path?: string;
 };
 
-type Details = {
+type Genre = {
+  id: string;
+  name: string;
+};
+
+export type Details = {
   id: string;
   title: string;
+  tagline: string;
   overview: string;
   poster_path: string;
   vote_average: number;
   vote_count: number;
+  release_date: string;
+  runtime: number;
+  genres: Genre[];
 };
 
 const mapReview = (item: any): Review => ({
@@ -77,19 +86,11 @@ function MoviePage() {
 
   return (
     <div className="MoviePage">
-      {details && (
-        <MainInfo
-          name={details.title}
-          description={details.overview}
-          path={details.poster_path}
-          type={TMDB_TYPE.MOVIE}
-          vote_avg={details.vote_average}
-          vote_count={details.vote_count}
-        />
-      )}
+      {details && <MainInfo details={details} type={TMDB_TYPE.MOVIE} />}
 
-      <div className="Details">
-        <h2>Details</h2>
+      <div className="Overview">
+        <h2>Overview</h2>
+        {details && <p>{details.overview}</p>}
       </div>
       <div className="Credits">
         <h2>Cast</h2>

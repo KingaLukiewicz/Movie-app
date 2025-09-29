@@ -10,7 +10,7 @@
   gap: 4rem;
 }
 
-.Reviews {
+.Reviews .Overview {
   display: flex;
   align-items: flex-start;
   padding: 0;
@@ -20,6 +20,15 @@
   color: #e5e5e5;
   flex-direction: column;
   margin-bottom: 4rem;
+}
+
+.Overview p {
+  width: 87%;
+  height: 30vh;
+  overflow-y: auto;
+  background-color: #1e1e1e;
+  white-space: normal;
+  padding: 1.5rem 1rem 1rem 1.5rem;
 }
 
 .ReviewSlider {
