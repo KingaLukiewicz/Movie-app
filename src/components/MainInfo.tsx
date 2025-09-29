@@ -2,62 +2,49 @@ import React from 'react';
 import { TMDB_IMAGE_BASE_URL } from '../constants';
 import { Tooltip, Rating } from '@mui/material';
 import './MainInfo.css';
+import { Details } from '../pages/MoviePage';
 
 type Props = {
-  name: string;
-  description: string;
-  path: string;
+  details: Details;
   type: string;
-  vote_avg?: number;
-  vote_count?: number;
 };
 
-const MainInfo: React.FC<Props> = ({
-  name,
-  description,
-  path,
-  type,
-  vote_avg,
-  vote_count
-}) => {
+const MainInfo: React.FC<Props> = ({ details, type }) => {
   return (
     <div className="MainInfo">
-      <img src={`${TMDB_IMAGE_BASE_URL}${path}`} alt={`${name} photo`} />
+      <img
+        src={`${TMDB_IMAGE_BASE_URL}${details.poster_path}`}
+        alt={`${name} photo`}
+      />
       <div className="RightInfo">
-        {type == 'person' ? (
-          <>
-            <p>{`NAME: ${name}`}</p>
-            <p>{`BIOGRAPHY: ${description}`}</p>
-          </>
-        ) : (
-          <>
-            <p>{`TITLE: ${name}`}</p>
-            <p>{`OVERVIEW: ${description}`}</p>
-            <div className="Rating">
-              {vote_avg && vote_count && (
-                <>
-                  <div className="StarRating">
-                    <p>{`RATING: `}</p>
-                    <Tooltip
-                      placement="top"
-                      title={`${(vote_avg / 2).toFixed(1)} / 5`}
-                    >
-                      <span>
-                        <Rating
-                          name="read-only"
-                          value={vote_avg / 2}
-                          precision={0.1}
-                          readOnly
-                        />
-                      </span>
-                    </Tooltip>
-                  </div>
-                  <p>{`${vote_count} votes`}</p>
-                </>
-              )}
-            </div>
-          </>
-        )}
+        <h3>{`${details.tagline}`}</h3>
+        <p>{`TITLE: ${details.title}`}</p>
+        <p>{`RELEASE DATE: ${details.release_date}`}</p>
+        <p>{`RUNTIME: ${Math.floor(details.runtime / 60)}h ${details.runtime % 60}min`}</p>
+        <p>{`GENRES: ${details.genres.map((g) => g.name).join(', ')}`}</p>
+        <div className="Rating">
+          {details.vote_average && details.vote_count && (
+            <>
+              <div className="StarRating">
+                <p>{`RATING: `}</p>
+                <Tooltip
+                  placement="top"
+                  title={`${(details.vote_average / 2).toFixed(1)} / 5`}
+                >
+                  <span>
+                    <Rating
+                      name="read-only"
+                      value={details.vote_average / 2}
+                      precision={0.1}
+                      readOnly
+                    />
+                  </span>
+                </Tooltip>
+              </div>
+              <p>{`${details.vote_count} votes`}</p>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
