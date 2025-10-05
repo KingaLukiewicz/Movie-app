@@ -88,9 +88,18 @@ function MoviePage() {
     <div className="MoviePage">
       {details && <MainInfo details={details} type={TMDB_TYPE.MOVIE} />}
 
-      <div className="Overview">
-        <h2>Overview</h2>
-        {details && <p>{details.overview}</p>}
+      <div className="Details">
+        <h2>Details</h2>
+        <div className="DetailsContainer">
+          {details && (
+            <>
+              <p>{`TITLE: ${details.title}`}</p>
+              <p>{`RELEASE DATE: ${details.release_date}`}</p>
+              <p>{`RUNTIME: ${Math.floor(details.runtime / 60)}h ${details.runtime % 60}min`}</p>
+              <p>{`GENRES: ${details.genres.map((g) => g.name).join(', ')}`}</p>
+            </>
+          )}
+        </div>
       </div>
       <div className="Credits">
         <h2>Cast</h2>

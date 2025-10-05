@@ -18,10 +18,7 @@ const MainInfo: React.FC<Props> = ({ details, type }) => {
       />
       <div className="RightInfo">
         <h3>{`${details.tagline}`}</h3>
-        <p>{`TITLE: ${details.title}`}</p>
-        <p>{`RELEASE DATE: ${details.release_date}`}</p>
-        <p>{`RUNTIME: ${Math.floor(details.runtime / 60)}h ${details.runtime % 60}min`}</p>
-        <p>{`GENRES: ${details.genres.map((g) => g.name).join(', ')}`}</p>
+        <p>{`OVERVIEW: ${details.overview}`}</p>
         <div className="Rating">
           {details.vote_average && details.vote_count && (
             <>
