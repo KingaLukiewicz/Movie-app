@@ -64,7 +64,7 @@ function MoviePage() {
       }
     };
     fetchReviews();
-  }, []);
+  }, [movie_id]);
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -82,7 +82,7 @@ function MoviePage() {
       }
     };
     fetchDetails();
-  }, []);
+  }, [movie_id]);
 
   return (
     <div className="MoviePage">
