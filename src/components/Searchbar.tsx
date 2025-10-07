@@ -13,7 +13,7 @@ type Result = {
 
 const mapResults = (item: any): Result => ({
   id: item.id,
-  name: item.name,
+  name: item.name || item.title,
   path: item.poster_path || item.profile_path,
   type: item.media_type
 });
