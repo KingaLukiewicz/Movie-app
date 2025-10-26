@@ -3,15 +3,16 @@ import { TMDB_TYPE, TMDB_ID_URL, API_TOKEN } from '../constants';
 import axios from 'axios';
 import './Searchbar.css';
 import { FiSearch } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
-type Result = {
+export type Result = {
   id: number;
   name: string;
   path: string;
   type: TMDB_TYPE;
 };
 
-const mapResults = (item: any): Result => ({
+export const mapResults = (item: any): Result => ({
   id: item.id,
   name: item.name || item.title,
   path: item.poster_path || item.profile_path,
@@ -21,6 +22,7 @@ const mapResults = (item: any): Result => ({
 const Searchbar = () => {
   const [query, setQuery] = useState('');
   const [searchResults, setResults] = useState<Result[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -48,21 +50,31 @@ const Searchbar = () => {
     setQuery(e.target.value);
   };
 
+  const handleClick = (result: Result) => {
+    navigate(`/${result.type}/${result.id}`);
+  };
+
   return (
-    <div className="Searchbar">
-      <FiSearch className="Icon" />
-      <input
-        type="search"
-        placeholder="Search movies, TV shows or people..."
-        aria-label="Search"
-        value={query}
-        onChange={handleChange}
-      />
-      <p>{query}</p>
-      {searchResults.map((result) => (
-        <p key={result.id}>{`${result.name} (${result.type})`}</p>
-      ))}
-    </div>
+    <>
+      <div className="Searchbar">
+        <FiSearch className="Icon" />
+        <input
+          type="search"
+          placeholder="Search movies, TV shows or people..."
+          aria-label="Search"
+          value={query}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="Results">
+        {searchResults.map((result) => (
+          <p
+            key={result.id}
+            onClick={() => handleClick(result)}
+          >{`${result.name} (${result.type})`}</p>
+        ))}
+      </div>
+    </>
   );
 };
 
