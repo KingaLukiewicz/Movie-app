@@ -1,11 +1,20 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Result, mapResults } from '../components/Searchbar';
 import axios from 'axios';
 import { TMDB_TYPE, TMDB_ID_URL, API_TOKEN } from '../constants';
 import { Details } from './MoviePage';
 import MainInfo from '../components/MainInfo';
 import './ResultPage.css';
+
+const mapResults = (item: any): Details => ({
+  id: item.id,
+  name: item.name || item.title,
+  type: item.media_type,
+  overview: item.overview,
+  path: item.poster_path || item.profile_path,
+  vote_average: item.vote_average,
+  vote_count: item.vote_count
+});
 
 function ResultPage() {
   const { query } = useParams<{ query: string }>();
@@ -25,7 +34,7 @@ function ResultPage() {
             accept: 'application/json'
           }
         });
-        setResults(response.data.results);
+        setResults(response.data.results.map((i: any) => mapResults(i)));
       } catch (error) {
         console.error('Failed to fetch', error);
       }
@@ -36,7 +45,7 @@ function ResultPage() {
   return (
     <div className="ResultPage">
       {results.map((result) => (
-        <MainInfo details={result} type={result.media_type} />
+        <MainInfo details={result} type={result.type} />
       ))}
     </div>
   );
