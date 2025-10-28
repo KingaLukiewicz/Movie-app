@@ -73,14 +73,16 @@ const Searchbar = () => {
           onKeyDown={handleKeyDown}
         />
       </div>
-      <div className="Results">
-        {searchResults.map((result) => (
-          <p
-            key={result.id}
-            onClick={() => handleClick(result)}
-          >{`${result.name} (${result.type})`}</p>
-        ))}
-      </div>
+      {query && (
+        <div className="Results">
+          {searchResults.map((result) => (
+            <p
+              key={result.id}
+              onClick={() => handleClick(result)}
+            >{`${result.name} (${result.type})`}</p>
+          ))}
+        </div>
+      )}
     </>
   );
 };
