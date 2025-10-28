@@ -13,11 +13,15 @@ const MainInfo: React.FC<Props> = ({ details, type }) => {
   return (
     <div className="MainInfo">
       <img
-        src={`${TMDB_IMAGE_BASE_URL}${details.poster_path}`}
+        src={`${TMDB_IMAGE_BASE_URL}${details.path}`}
         alt={`${name} photo`}
       />
       <div className="RightInfo">
-        <h3>{`${details.tagline}`}</h3>
+        {details.tagline ? (
+          <h3>{`${details.tagline}`}</h3>
+        ) : (
+          <h3>{`${details.name}`}</h3>
+        )}
         <p>{`OVERVIEW: ${details.overview}`}</p>
         <div className="Rating">
           {details.vote_average && details.vote_count && (
