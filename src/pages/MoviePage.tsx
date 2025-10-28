@@ -101,7 +101,7 @@ function MoviePage() {
 
   return (
     <div className="MoviePage">
-      {details && <MainInfo details={details} type={TMDB_TYPE.MOVIE} />}
+      {details && <MainInfo details={details} />}
 
       <div className="Details">
         <h2>Details</h2>
