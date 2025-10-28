@@ -24,16 +24,31 @@ type Genre = {
 
 export type Details = {
   id: string;
-  title: string;
-  tagline: string;
+  name: string;
+  type: TMDB_TYPE;
+  tagline?: string;
   overview: string;
-  poster_path: string;
+  path: string;
   vote_average: number;
   vote_count: number;
-  release_date: string;
-  runtime: number;
-  genres: Genre[];
+  release_date?: string;
+  runtime?: number;
+  genres?: Genre[];
 };
+
+const mapDetails = (item: any): Details => ({
+  id: item.id,
+  name: item.title,
+  type: item.media_type,
+  tagline: item.tagline,
+  overview: item.overview,
+  path: item.poster_path,
+  vote_average: item.vote_average,
+  vote_count: item.vote_count,
+  release_date: item.release_date,
+  runtime: item.runtime,
+  genres: item.genres
+});
 
 const mapReview = (item: any): Review => ({
   id: item.id,
@@ -76,7 +91,7 @@ function MoviePage() {
             accept: 'application/json'
           }
         });
-        setDetails(response.data);
+        setDetails(mapDetails(response.data));
       } catch (error) {
         console.error('Failed to fetch', error);
       }
@@ -93,10 +108,14 @@ function MoviePage() {
         <div className="DetailsContainer">
           {details && (
             <>
-              <p>{`TITLE: ${details.title}`}</p>
+              <p>{`TITLE: ${details.name}`}</p>
               <p>{`RELEASE DATE: ${details.release_date}`}</p>
-              <p>{`RUNTIME: ${Math.floor(details.runtime / 60)}h ${details.runtime % 60}min`}</p>
-              <p>{`GENRES: ${details.genres.map((g) => g.name).join(', ')}`}</p>
+              {details.runtime && (
+                <p>{`RUNTIME: ${Math.floor(details.runtime / 60)}h ${details.runtime % 60}min`}</p>
+              )}
+              {details.genres && (
+                <p>{`GENRES: ${details.genres.map((g) => g.name).join(', ')}`}</p>
+              )}
             </>
           )}
         </div>
