@@ -6,12 +6,12 @@ import { Details } from '../pages/MoviePage';
 
 type Props = {
   details: Details;
-  type: string;
+  onClick?: () => void;
 };
 
-const MainInfo: React.FC<Props> = ({ details, type }) => {
+const MainInfo: React.FC<Props> = ({ details, onClick }) => {
   return (
-    <div className="MainInfo">
+    <div className="MainInfo" onClick={onClick}>
       <img
         src={`${TMDB_IMAGE_BASE_URL}${details.path}`}
         alt={`${name} photo`}
