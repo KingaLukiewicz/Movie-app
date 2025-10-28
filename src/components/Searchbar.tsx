@@ -50,6 +50,12 @@ const Searchbar = () => {
     setQuery(e.target.value);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key == 'Enter') {
+      navigate(`/results/${query}`);
+    }
+  };
+
   const handleClick = (result: Result) => {
     navigate(`/${result.type}/${result.id}`);
   };
@@ -64,6 +70,7 @@ const Searchbar = () => {
           aria-label="Search"
           value={query}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
       </div>
       <div className="Results">
