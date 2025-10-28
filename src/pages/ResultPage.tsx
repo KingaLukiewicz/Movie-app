@@ -4,6 +4,7 @@ import axios from 'axios';
 import { TMDB_TYPE, TMDB_ID_URL, API_TOKEN } from '../constants';
 import { Details } from './MoviePage';
 import MainInfo from '../components/MainInfo';
+import { useNavigate } from 'react-router-dom';
 import './ResultPage.css';
 
 const mapResults = (item: any): Details => ({
@@ -19,6 +20,7 @@ const mapResults = (item: any): Details => ({
 function ResultPage() {
   const { query } = useParams<{ query: string }>();
   const [results, setResults] = useState<Details[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -42,10 +44,14 @@ function ResultPage() {
     fetchResults();
   }, [query]);
 
+  const handleClick = (result: Details) => {
+    navigate(`/${result.type}/${result.id}`);
+  };
+
   return (
     <div className="ResultPage">
       {results.map((result) => (
-        <MainInfo details={result} type={result.type} />
+        <MainInfo onClick={() => handleClick(result)} details={result} />
       ))}
     </div>
   );
