@@ -18,13 +18,15 @@ export type Details = {
   name: string;
   type: TMDB_TYPE;
   tagline?: string;
-  overview: string;
+  overview?: string;
   path: string;
-  vote_average: number;
-  vote_count: number;
+  vote_average?: number;
+  vote_count?: number;
   release_date?: string;
   runtime?: number;
   genres?: Genre[];
+  department?: string;
+  known_for?: String[];
 };
 
 export type Item = {
