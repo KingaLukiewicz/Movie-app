@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { TMDB_TYPE, TMDB_ID_URL, API_TOKEN } from '../constants';
-import { Details } from './MoviePage';
+import { TMDB_ID_URL, API_TOKEN } from '../constants';
+import { Details } from '../types';
 import MainInfo from '../components/MainInfo';
 import { useNavigate } from 'react-router-dom';
 import './ResultPage.css';
@@ -50,9 +50,19 @@ function ResultPage() {
 
   return (
     <div className="ResultPage">
-      {results.map((result) => (
-        <MainInfo onClick={() => handleClick(result)} details={result} />
-      ))}
+      {results.map((result) =>
+        result.type === 'person' ? (
+          <MainInfo
+            onClick={() => handleClick(result)}
+            details={result}
+          ></MainInfo>
+        ) : (
+          <MainInfo onClick={() => handleClick(result)} details={result}>
+            <MainInfo.Overview />
+            <MainInfo.Rating />
+          </MainInfo>
+        )
+      )}
     </div>
   );
 }

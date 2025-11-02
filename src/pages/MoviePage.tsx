@@ -8,33 +8,7 @@ import axios from 'axios';
 import { REVIEW_SLIDER } from '../constants';
 import ReviewBox from '../components/ReviewBox';
 import MainInfo from '../components/MainInfo';
-
-export type Review = {
-  id: string;
-  author: string;
-  rating: number;
-  content: string;
-  avatar_path?: string;
-};
-
-type Genre = {
-  id: string;
-  name: string;
-};
-
-export type Details = {
-  id: string;
-  name: string;
-  type: TMDB_TYPE;
-  tagline?: string;
-  overview: string;
-  path: string;
-  vote_average: number;
-  vote_count: number;
-  release_date?: string;
-  runtime?: number;
-  genres?: Genre[];
-};
+import { Review, Details } from '../types';
 
 const mapDetails = (item: any): Details => ({
   id: item.id,

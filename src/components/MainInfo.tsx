@@ -2,7 +2,7 @@ import React, { PropsWithChildren, createContext, useContext } from 'react';
 import { TMDB_IMAGE_BASE_URL } from '../constants';
 import { Tooltip, Rating } from '@mui/material';
 import './MainInfo.css';
-import { Details } from '../pages/MoviePage';
+import { Details } from '../types';
 
 type MainInfoContext = {
   details: Details;

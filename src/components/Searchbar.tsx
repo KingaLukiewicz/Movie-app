@@ -4,13 +4,7 @@ import axios from 'axios';
 import './Searchbar.css';
 import { FiSearch } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-
-export type Result = {
-  id: number;
-  name: string;
-  path: string;
-  type: TMDB_TYPE;
-};
+import { Result } from '../types';
 
 export const mapResults = (item: any): Result => ({
   id: item.id,
