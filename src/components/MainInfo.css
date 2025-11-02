@@ -11,6 +11,7 @@
 .MainInfo img {
   height: 40vh;
   width: auto;
+  max-width: 20vw;
   margin-right: 4vw;
 }
 
