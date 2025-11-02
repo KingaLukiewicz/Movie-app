@@ -14,7 +14,11 @@ const mapResults = (item: any): Details => ({
   overview: item.overview,
   path: item.poster_path || item.profile_path,
   vote_average: item.vote_average,
-  vote_count: item.vote_count
+  vote_count: item.vote_count,
+  department: item.known_for_department,
+  known_for: item.known_for
+    ? item.known_for.map((entry: any) => entry.title || entry.name || 'Unknown')
+    : []
 });
 
 function ResultPage() {
@@ -53,11 +57,19 @@ function ResultPage() {
       {results.map((result) =>
         result.type === 'person' ? (
           <MainInfo
+            key={result.id}
             onClick={() => handleClick(result)}
             details={result}
-          ></MainInfo>
+          >
+            <MainInfo.Department />
+            <MainInfo.KnownFor />
+          </MainInfo>
         ) : (
-          <MainInfo onClick={() => handleClick(result)} details={result}>
+          <MainInfo
+            key={result.id}
+            onClick={() => handleClick(result)}
+            details={result}
+          >
             <MainInfo.Overview />
             <MainInfo.Rating />
           </MainInfo>

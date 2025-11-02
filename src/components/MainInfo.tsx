@@ -26,6 +26,8 @@ type Props = PropsWithChildren & {
 type MainInfoComponent = React.FC<Props> & {
   Overview: React.FC;
   Rating: React.FC;
+  Department: React.FC;
+  KnownFor: React.FC;
 };
 
 const MainInfo: MainInfoComponent = ({ children, details, onClick }) => {
@@ -80,6 +82,22 @@ MainInfo.Rating = function MainInfoRating() {
         </>
       )}
     </div>
+  );
+};
+
+MainInfo.Department = function MainInfoDepartment() {
+  const { details } = useMainInfoContext();
+  return <p>{`KNOWN FOR DEPARTMENT: ${details.department}`}</p>;
+};
+
+MainInfo.KnownFor = function MainInfoKnownFor() {
+  const { details } = useMainInfoContext();
+  return (
+    <>
+      {details.known_for && (
+        <p>{`KNOWN FOR: ${details.known_for.map((i) => i).join(', ')}`}</p>
+      )}
+    </>
   );
 };
 
