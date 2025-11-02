@@ -101,7 +101,12 @@ function MoviePage() {
 
   return (
     <div className="MoviePage">
-      {details && <MainInfo details={details} />}
+      {details && (
+        <MainInfo details={details}>
+          <MainInfo.Overview />
+          <MainInfo.Rating />
+        </MainInfo>
+      )}
 
       <div className="Details">
         <h2>Details</h2>
