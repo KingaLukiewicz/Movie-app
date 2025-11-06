@@ -47,11 +47,13 @@ const Searchbar = () => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key == 'Enter') {
       navigate(`/results/${query}`);
+      setQuery('');
     }
   };
 
   const handleClick = (result: Result) => {
     navigate(`/${result.type}/${result.id}`);
+    setQuery('');
   };
 
   return (
