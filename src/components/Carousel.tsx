@@ -72,11 +72,15 @@ const Carousel: React.FC<Props> = ({ text, type, endpoint }) => {
     <div className="Carousel">
       <div className="Card">{text}</div>
       <div className="Slider">
-        <Slider {...SLIDER_SETTINGS}>
-          {items.map((item) => (
-            <CarouselItem key={item.id} item={item} type={type} />
-          ))}
-        </Slider>
+        {items ? (
+          <Slider {...SLIDER_SETTINGS}>
+            {items.map((item) => (
+              <CarouselItem key={item.id} item={item} type={type} />
+            ))}
+          </Slider>
+        ) : (
+          <p>No elements found.</p>
+        )}
       </div>
     </div>
   );

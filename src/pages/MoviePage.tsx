@@ -112,11 +112,15 @@ function MoviePage() {
       <div className="Reviews">
         <h2>Reviews</h2>
         <div className="ReviewSlider">
-          <Slider {...REVIEW_SLIDER}>
-            {reviews.map((review) => (
-              <ReviewBox key={review.id} review={review} />
-            ))}
-          </Slider>
+          {reviews ? (
+            <Slider {...REVIEW_SLIDER}>
+              {reviews.map((review) => (
+                <ReviewBox key={review.id} review={review} />
+              ))}
+            </Slider>
+          ) : (
+            <p>No reviews found.</p>
+          )}
         </div>
       </div>
       <div className="Recomendations">

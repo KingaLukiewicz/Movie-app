@@ -18,7 +18,7 @@ const MainInfo: React.FC<Props> = ({ details, type }) => {
       />
       <div className="RightInfo">
         <h3>{`${details.tagline}`}</h3>
-        <p>{`OVERVIEW: ${details.overview}`}</p>
+        {details.overview && <p>{`OVERVIEW: ${details.overview}`}</p>}
         <div className="Rating">
           {details.vote_average && details.vote_count && (
             <>
