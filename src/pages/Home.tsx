@@ -6,7 +6,7 @@ function Home() {
   return (
     <div className="Home">
       {Object.entries(CAROUSEL_CATEGORIES).map(([key, { title, type }]) => (
-        <Carousel text={title} type={type} />
+        <Carousel key={key} text={title} type={type} />
       ))}
     </div>
   );
