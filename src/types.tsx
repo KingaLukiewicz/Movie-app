@@ -27,6 +27,9 @@ export type Details = {
   genres?: Genre[];
   department?: string;
   known_for?: String[];
+  first_air_date?: string;
+  seasons?: number;
+  episodes?: number;
 };
 
 export type Item = {
