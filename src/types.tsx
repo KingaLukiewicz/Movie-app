@@ -30,6 +30,9 @@ export type Details = {
   first_air_date?: string;
   seasons?: number;
   episodes?: number;
+  birthday?: string;
+  deathday?: string;
+  place_of_birth?: string;
 };
 
 export type Item = {

@@ -14,7 +14,6 @@ const mapDetails = (item: any): Details => ({
   id: item.id,
   name: item.name,
   type: item.media_type,
-  tagline: item.tagline,
   overview: item.overview,
   path: item.poster_path,
   vote_average: item.vote_average,
