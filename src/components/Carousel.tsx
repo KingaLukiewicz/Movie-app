@@ -57,9 +57,9 @@ const Carousel: React.FC<Props> = ({ text, type, endpoint }) => {
           }
         });
         if (response.data.cast) {
-          setItems(response.data.cast.map((i: any) => mapItem(type, i)));
+          setItems(response.data.cast.map((i: Item) => mapItem(type, i)));
         } else {
-          setItems(response.data.results.map((i: any) => mapItem(type, i)));
+          setItems(response.data.results.map((i: Item) => mapItem(type, i)));
         }
       } catch (error) {
         console.error('Failed to fetch', error);

@@ -58,7 +58,7 @@ function MoviePage() {
             accept: 'application/json'
           }
         });
-        setReviews(response.data.results.map((i: any) => mapReview(i)));
+        setReviews(response.data.results.map((i: Review) => mapReview(i)));
       } catch (error) {
         console.error('Failed to fetch', error);
       }
