@@ -5,9 +5,10 @@ import {
   TMDB_IMAGE_BASE_URL,
   TMDB_ID_URL,
   TMDB_TYPE
-} from './constants';
+} from '../constants';
 import './CarouselItem.css';
 import { Item } from './Carousel';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   item: Item;
@@ -16,9 +17,14 @@ type Props = {
 
 const CarouselItem: React.FC<Props> = ({ item, type }) => {
   const [overview, setOverview] = useState<string>('');
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/${type}/${item.id}`);
+  };
 
   useEffect(() => {
-    if (type != 'person') {
+    if (type != TMDB_TYPE.PERSON) {
       const fetchOverview = async () => {
         try {
           const response = await axios.get(
@@ -40,16 +46,27 @@ const CarouselItem: React.FC<Props> = ({ item, type }) => {
   }, []);
 
   return (
-    <div className="Container">
+    <div
+      className="Container"
+      onClick={handleClick}
+      style={{ cursor: 'pointer' }}
+    >
       <div className="CarouselItem">
         <div className="Front">
           <img
             src={`${TMDB_IMAGE_BASE_URL}${item.path}`}
-            alt={`${item.name} ${type === 'movie' ? 'movie poster' : type === 'tv' ? 'TV show poster' : 'profile photo'}`}
+            alt={`${item.name} ${type === TMDB_TYPE.MOVIE ? 'movie poster' : type === TMDB_TYPE.TV ? 'TV show poster' : 'profile photo'}`}
           />
         </div>
         <div className="Back">
-          {type == 'person' ? <p>{item.name}</p> : <p>{overview}</p>}
+          {type == TMDB_TYPE.PERSON ? (
+            <>
+              <p className="Name">{item.name}</p>
+              {item.character && <p>as {item.character}</p>}
+            </>
+          ) : (
+            <p>{overview}</p>
+          )}
         </div>
       </div>
     </div>

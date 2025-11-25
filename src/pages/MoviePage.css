@@ -1,0 +1,45 @@
+.MoviePage {
+  text-align: left;
+  height: 100%;
+  width: 100%;
+  color: #e5e5e5;
+  font-size: clamp(1rem, 1.5vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  padding: 9rem 4rem 4rem 4rem;
+  gap: 4rem;
+}
+
+.Reviews .Details {
+  display: flex;
+  align-items: flex-start;
+  padding: 0;
+  width: 100%;
+  height: 30vh;
+  gap: 0.5rem;
+  color: #e5e5e5;
+  flex-direction: column;
+  margin-bottom: 4rem;
+}
+
+.DetailsContainer {
+  width: 87%;
+  height: 30vh;
+  overflow-y: auto;
+  background-color: #1e1e1e;
+  white-space: normal;
+  padding: 1.5rem 1rem 1rem 1.5rem;
+}
+
+.ReviewSlider {
+  background-color: #1e1e1e;
+  width: 90%;
+  height: 100%;
+}
+
+.ReviewSlide {
+  padding: 1rem;
+  color: #e5e5e5;
+  height: 100%;
+  overflow-y: auto;
+}

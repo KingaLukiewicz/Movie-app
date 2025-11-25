@@ -34,6 +34,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .Front img {
@@ -52,8 +53,14 @@
 
 .Back p {
   font-size: clamp(0.6rem, 1.5vw, 1rem);
-  padding: 10px;
+  padding: 0.5vw;
   text-align: center;
-  max-height: 100%;
-  margin-bottom: 10px;
+  max-height: 90%;
+  margin-bottom: 5vh;
+  margin-top: 5vh;
+}
+
+.Name {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: bolder;
 }
