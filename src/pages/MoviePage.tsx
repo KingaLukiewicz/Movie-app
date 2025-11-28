@@ -8,32 +8,21 @@ import axios from 'axios';
 import { REVIEW_SLIDER } from '../constants';
 import ReviewBox from '../components/ReviewBox';
 import MainInfo from '../components/MainInfo';
+import { Review, Details } from '../types';
 
-export type Review = {
-  id: string;
-  author: string;
-  rating: number;
-  content: string;
-  avatar_path?: string;
-};
-
-type Genre = {
-  id: string;
-  name: string;
-};
-
-export type Details = {
-  id: string;
-  title: string;
-  tagline: string;
-  overview: string;
-  poster_path: string;
-  vote_average: number;
-  vote_count: number;
-  release_date: string;
-  runtime: number;
-  genres: Genre[];
-};
+const mapDetails = (item: any): Details => ({
+  id: item.id,
+  name: item.title,
+  type: item.media_type,
+  tagline: item.tagline,
+  overview: item.overview,
+  path: item.poster_path,
+  vote_average: item.vote_average,
+  vote_count: item.vote_count,
+  release_date: item.release_date,
+  runtime: item.runtime,
+  genres: item.genres
+});
 
 const mapReview = (item: any): Review => ({
   id: item.id,
@@ -76,7 +65,7 @@ function MoviePage() {
             accept: 'application/json'
           }
         });
-        setDetails(response.data);
+        setDetails(mapDetails(response.data));
       } catch (error) {
         console.error('Failed to fetch', error);
       }
@@ -86,17 +75,26 @@ function MoviePage() {
 
   return (
     <div className="MoviePage">
-      {details && <MainInfo details={details} type={TMDB_TYPE.MOVIE} />}
+      {details && (
+        <MainInfo details={details}>
+          <MainInfo.Overview />
+          <MainInfo.Rating />
+        </MainInfo>
+      )}
 
       <div className="Details">
         <h2>Details</h2>
         <div className="DetailsContainer">
           {details && (
             <>
-              <p>{`TITLE: ${details.title}`}</p>
+              <p>{`TITLE: ${details.name}`}</p>
               <p>{`RELEASE DATE: ${details.release_date}`}</p>
-              <p>{`RUNTIME: ${Math.floor(details.runtime / 60)}h ${details.runtime % 60}min`}</p>
-              <p>{`GENRES: ${details.genres.map((g) => g.name).join(', ')}`}</p>
+              {details.runtime && (
+                <p>{`RUNTIME: ${Math.floor(details.runtime / 60)}h ${details.runtime % 60}min`}</p>
+              )}
+              {details.genres && (
+                <p>{`GENRES: ${details.genres.map((g) => g.name).join(', ')}`}</p>
+              )}
             </>
           )}
         </div>

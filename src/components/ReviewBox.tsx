@@ -1,4 +1,4 @@
-import { Review } from '../pages/MoviePage';
+import { Review } from '../types';
 import Avatar from '@mui/material/Avatar';
 import { Rating, Tooltip } from '@mui/material';
 import './ReviewBox.css';

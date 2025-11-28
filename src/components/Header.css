@@ -10,7 +10,9 @@
   margin: 0;
   padding: 0.5rem 1rem;
 
-  display: inline-grid;
+  display: flex;
+  flex-direction: row;
+  /* display: inline-grid; */
   align-items: center;
   justify-content: center;
 
@@ -20,4 +22,12 @@
 
   font-size: clamp(1rem, 1.5vw, 3rem);
   font-family: 'Ropa Sans', sans-serif;
+}
+
+.Button {
+  position: absolute;
+  font-size: 3vw;
+  cursor: pointer;
+  color: #e98530;
+  left: 4vw;
 }

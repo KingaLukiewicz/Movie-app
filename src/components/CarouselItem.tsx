@@ -7,7 +7,7 @@ import {
   TMDB_TYPE
 } from '../constants';
 import './CarouselItem.css';
-import { Item } from './Carousel';
+import { Item } from '../types';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {

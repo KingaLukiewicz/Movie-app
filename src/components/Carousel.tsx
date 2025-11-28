@@ -9,13 +9,7 @@ import {
 } from '../constants';
 import './Carousel.css';
 import CarouselItem from './CarouselItem';
-
-export type Item = {
-  id: number;
-  name: string;
-  path: string;
-  character?: string;
-};
+import { Item } from '../types';
 
 type Props = {
   text: string;
