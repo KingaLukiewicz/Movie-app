@@ -24,7 +24,7 @@ const CarouselItem: React.FC<Props> = ({ item, type }) => {
   };
 
   useEffect(() => {
-    if (type != 'person') {
+    if (type != TMDB_TYPE.PERSON) {
       const fetchOverview = async () => {
         try {
           const response = await axios.get(
@@ -55,11 +55,11 @@ const CarouselItem: React.FC<Props> = ({ item, type }) => {
         <div className="Front">
           <img
             src={`${TMDB_IMAGE_BASE_URL}${item.path}`}
-            alt={`${item.name} ${type === 'movie' ? 'movie poster' : type === 'tv' ? 'TV show poster' : 'profile photo'}`}
+            alt={`${item.name} ${type === TMDB_TYPE.MOVIE ? 'movie poster' : type === TMDB_TYPE.TV ? 'TV show poster' : 'profile photo'}`}
           />
         </div>
         <div className="Back">
-          {type === 'person' ? (
+          {type == TMDB_TYPE.PERSON ? (
             <>
               <p className="Name">{item.name}</p>
               {item.character && <p>as {item.character}</p>}

@@ -32,7 +32,7 @@ const Searchbar = () => {
             accept: 'application/json'
           }
         });
-        setResults(response.data.results.map((i: any) => mapResults(i)));
+        setResults(response.data.results.map((i: Result) => mapResults(i)));
       } catch (error) {
         console.error('Failed to fetch', error);
       }
