@@ -1,0 +1,11 @@
+.ResultPage {
+  height: 100%;
+  width: 100%;
+  color: #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 9rem;
+  gap: 4rem;
+}

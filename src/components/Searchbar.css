@@ -5,7 +5,6 @@
 }
 
 .Searchbar {
-  position: relative;
   display: flex;
   align-items: center;
   padding: 0 1rem;
@@ -32,18 +31,16 @@
 
 .Results {
   position: absolute;
-  top: 100%;
+  top: 12vh;
   left: 35%;
-  width: 30%;
+  width: 30vw;
   align-content: center;
   justify-content: center;
-  display: flex;
-  flex-direction: column;
   background-color: #1e1e1e;
-  opacity: 80%;
+  opacity: 90%;
 
   max-height: 40vh;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .Results p {

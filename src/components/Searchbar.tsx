@@ -4,13 +4,7 @@ import axios from 'axios';
 import './Searchbar.css';
 import { FiSearch } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-
-export type Result = {
-  id: number;
-  name: string;
-  path: string;
-  type: TMDB_TYPE;
-};
+import { Result } from '../types';
 
 export const mapResults = (item: any): Result => ({
   id: item.id,
@@ -50,8 +44,16 @@ const Searchbar = () => {
     setQuery(e.target.value);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key == 'Enter') {
+      navigate(`/results/${query}`);
+      setQuery('');
+    }
+  };
+
   const handleClick = (result: Result) => {
     navigate(`/${result.type}/${result.id}`);
+    setQuery('');
   };
 
   return (
@@ -64,16 +66,19 @@ const Searchbar = () => {
           aria-label="Search"
           value={query}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
       </div>
-      <div className="Results">
-        {searchResults.map((result) => (
-          <p
-            key={result.id}
-            onClick={() => handleClick(result)}
-          >{`${result.name} (${result.type})`}</p>
-        ))}
-      </div>
+      {query && (
+        <div className="Results">
+          {searchResults.map((result) => (
+            <p
+              key={result.id}
+              onClick={() => handleClick(result)}
+            >{`${result.name} (${result.type})`}</p>
+          ))}
+        </div>
+      )}
     </>
   );
 };
